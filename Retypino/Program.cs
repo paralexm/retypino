@@ -9,9 +9,7 @@ internal class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        var app = PhotinoServer
-            .CreateStaticFileServer(args, out string baseUrl);
-
+        var app = PhotinoServer.CreateStaticFileServer(args, 9000, 100, "wwwroot", out string baseUrl);
         app.UseDefaultFiles();
         app.UseStaticFiles();
         app.RunAsync();
@@ -49,7 +47,7 @@ internal class Program
             //    // "window.external.receiveMessage(callback: Function)"
             //    window.SendWebMessage(response);
             //})
-            .Load($"{baseUrl}/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
+            .Load($"{baseUrl}/index.html");
 
         window.WaitForClose();
     }
